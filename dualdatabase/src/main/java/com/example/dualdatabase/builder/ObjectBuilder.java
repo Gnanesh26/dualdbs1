@@ -1,32 +1,32 @@
 package com.example.dualdatabase.builder;
 
 
-import com.example.dualdatabase.entity1.Student;
-import com.example.dualdatabase.entity1.StudentDTO;
-import com.example.dualdatabase.entity2.Professor;
-import com.example.dualdatabase.entity2.ProfessorDTO;
+import com.example.dualdatabase.entity1.Orders;
+import com.example.dualdatabase.entity1.OrdersDTO;
 
-import java.util.Stack;
 
 public class ObjectBuilder {
 
 
-    public static Student createStudentFromStudentDTO(StudentDTO studentDTO) {
-        Student student = new Student();
-        student.setName(studentDTO.getName());
-        student.setCollegeName(studentDTO.getCollegeName());
-        student.setGroupName(studentDTO.getGroup());
-        return student;
+    public static Orders createOrderFromordersDTO(OrdersDTO ordersDTO) {
+        Orders orders = new Orders();
+        orders.setName(ordersDTO.getName());
+        orders.setCode(ordersDTO.getCode());
+        orders.setInvoiceNumber(ordersDTO.getInvoiceNumber());
+        orders.setTotalPrice(ordersDTO.getTotalPrice());
+        orders.setId(orders.getId());
+        return orders;
     }
 
 
-    public static Professor createProfessorFromProfessorDTO(ProfessorDTO professorDTO) {
-
-        Professor professor = new Professor();
-        professor.setName(professorDTO.getName());
-        professor.setSubject(professorDTO.getSubject());
-        return professor;
+    public static com.example.dualdatabase.entity2.Orders createOrderFromappordersDTO(com.example.dualdatabase.entity2.OrdersDTO ordersDTO) {
+        com.example.dualdatabase.entity2.Orders orders = new com.example.dualdatabase.entity2.Orders();
+        orders.setName(ordersDTO.getName());
+        orders.setTotalPrice(ordersDTO.getTotalPrice());
+        orders.setInvoiceNumber(ordersDTO.getInvoiceNumber());
+        return orders;
     }
+
 
 }
 

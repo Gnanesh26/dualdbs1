@@ -3,7 +3,6 @@ package com.example.dualdatabase.config;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,31 +22,29 @@ import java.util.HashMap;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.example.dualdatabase.repo1",
-        entityManagerFactoryRef = "studentEntityManagerFactory",
-        transactionManagerRef = "studentTransactionManager"
+        entityManagerFactoryRef = "mcloudEntityManagerFactory",
+        transactionManagerRef = "mcloudTransactionManager"
 )
 public class DatabaseConfig {
-
-
 
 
     @Autowired
     Environment env;
 
     @Primary
-    @Bean(name = "studentDataSource")
+    @Bean(name = "mcloudDataSource")
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setUrl(env.getProperty("student.datasource.url"));
-        ds.setUsername(env.getProperty("student.datasource.username"));
-        ds.setPassword(env.getProperty("student.datasource.password"));
-        ds.setDriverClassName(env.getProperty("student.datasource.driver-class-name"));
+        ds.setUrl(env.getProperty("mcloud.datasource.url"));
+        ds.setUsername(env.getProperty("mcloud.datasource.username"));
+        ds.setPassword(env.getProperty("mcloud.datasource.password"));
+        ds.setDriverClassName(env.getProperty("mcloud.datasource.driver-class-name"));
         return ds;
     }
 
 
     @Primary
-    @Bean(name = "studentEntityManagerFactory")
+    @Bean(name = "mcloudEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManager() {
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
         bean.setDataSource(dataSource());
@@ -63,8 +60,8 @@ public class DatabaseConfig {
     }
 
     @Primary
-    @Bean("studentTransactionManager")
-    public PlatformTransactionManager transactionManager(@Qualifier("studentEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+    @Bean("mcloudTransactionManager")
+    public PlatformTransactionManager transactionManager(@Qualifier("mcloudEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
 }

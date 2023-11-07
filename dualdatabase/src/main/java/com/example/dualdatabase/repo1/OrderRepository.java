@@ -1,10 +1,10 @@
 package com.example.dualdatabase.repo1;
 
 
-import com.example.dualdatabase.entity1.Student;
+import com.example.dualdatabase.entity1.Orders;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Integer> {
+public interface OrderRepository extends JpaRepository<Orders, Integer> {
 }

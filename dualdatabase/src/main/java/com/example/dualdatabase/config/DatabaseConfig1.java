@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.Objects;
 
 @Configuration
 @EnableTransactionManagement
@@ -32,13 +33,13 @@ public class DatabaseConfig1 {
     Environment env;
 
     @Primary
-    @Bean(name = "professorDataSource")
+    @Bean(name = "applicationDataSource")
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setUrl(env.getProperty("professor.datasource.url"));
-        ds.setUsername(env.getProperty("professor.datasource.username"));
-        ds.setPassword(env.getProperty("professor.datasource.password"));
-        ds.setDriverClassName(env.getProperty("professor.datasource.driver-class-name"));
+        ds.setUrl(env.getProperty("application.datasource.url"));
+        ds.setUsername(env.getProperty("application.datasource.username"));
+        ds.setPassword(env.getProperty("application.datasource.password"));
+        ds.setDriverClassName(Objects.requireNonNull(env.getProperty("application.datasource.driver-class-name")));
         return ds;
     }
 
